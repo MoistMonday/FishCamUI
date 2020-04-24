@@ -1,6 +1,6 @@
 <?php
 
-$link = mysqli_connect("localhost","root","");
+$link = mysqli_connect("localhost","root","123");
 mysqli_select_db($link, "video");
 
 if (isset($_POST['submit']))
@@ -20,8 +20,9 @@ if (isset($_POST['submit']))
 <head>
     <link rel = "stylesheet" href = "style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600" rel="stylesheet">
-<meta charset = "utf-8">
-<title> video upload </title>
+    <meta charset = "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Video Upload </title>
 </head>
 <body class = "body">
 
@@ -44,10 +45,10 @@ if (isset ($_POST['submit']))
 ?>
 </div>
 <div class="videoBox header">
-<a href = "videos.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
 </div>
 
-<div class="videoBox btn-group">
+<div class="btn-group">
 <a href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
 <a href = "videos.php"> <img src= "filledfishcam.png" onmouseover = "this.src = 'filledfishcam.png'" onmouseout = "this.src = 'fishcam.png'" height="25" width="25">  </a>
 <a href = "notification.php"> <img src= "bell.png" onmouseover = "this.src = 'filledbell.png'" onmouseout = "this.src = 'bell.png'"   height="25" width="25"> </a>

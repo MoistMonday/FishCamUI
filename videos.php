@@ -1,6 +1,6 @@
 <?php
 
-$link = mysqli_connect("localhost","root","");
+$link = mysqli_connect("localhost","root","123");
 mysqli_select_db($link, "video");
 
 ?>
@@ -10,7 +10,8 @@ mysqli_select_db($link, "video");
 <head>
     <link rel = "stylesheet" href = "style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600" rel="stylesheet">
-<meta charset = "utf-8">
+    <meta charset = "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title> FishCam: The Underwater World of Limfjorden </title>
 
 
@@ -42,12 +43,12 @@ while($row = $result->fetch_assoc())// mysqli_fetch_assoc($query))
 
 ?>
 <div class="videoBox header">
-<a href = "videos.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
 </div>
 
 </div>
 
-<div class="videoBox btn-group">
+<div class="btn-group">
 <a href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
 <a href = "videos.php"> <img src= "filledfishcam.png" height="25" width="25">  </a>
 <a href = "notification.php"> <img src= "bell.png" onmouseover = "this.src = 'filledbell.png'" onmouseout = "this.src = 'bell.png'"   height="25" width="25"> </a>
