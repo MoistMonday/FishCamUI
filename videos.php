@@ -1,6 +1,6 @@
 <?php
 
-$link = mysqli_connect("localhost","root","123");
+$link = mysqli_connect("localhost","root","");
 mysqli_select_db($link, "video");
 
 ?>
@@ -32,13 +32,15 @@ while($row = $result->fetch_assoc())// mysqli_fetch_assoc($query))
     $name = $row['name'];
     $url = $row['url'];
     $time = $row ['time'];
+    
 
     //echo "<a href = 'watch.php?id=$id'> $name </a><br />";
     echo '<div class = "videoBox">';
-    echo "<h2 class = 'videoTitle'> $time </h2>";
+    echo "<a href='watch.php?id=$id' class = 'videoTitle'> $time </h2>";
     echo "<video class = 'video' width = '320' height = '240' controls src = '$url'> Your browser does not support the video tag. </video>";
-    echo "</div>";
+    echo "</div>"; 
 }
+
 
 
 ?>
@@ -55,4 +57,15 @@ while($row = $result->fetch_assoc())// mysqli_fetch_assoc($query))
 <a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
 </div>
 </body>
+<script src="jquery-3.5.5.js"></script>
+
+<script> 
+    $(document).ready(function(){
+        $("videoTitle").click(function(){
+        alert("Clicked video");
+        window.location = 'watch.php';
+        });
+    });
+</script>
+
 </html>

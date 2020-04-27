@@ -17,7 +17,7 @@
     text-align: center;
     
   padding: 2%;
-  margin-bottom: 2%;
+  margin-bottom: 5%;
   margin-top: 2%;
   height: 100%;
 }
@@ -44,15 +44,17 @@
 .videoTitle{
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: medium;
+    font-size: x-large;
     text-align: left;
+    text-decoration: none;
+    color: black;
 }
 
 .uploadText{
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: medium;
-    color: #51bba1
+    color: #51bba1;
 }
 /* elinas stupid buttons*/
 .button{
@@ -126,12 +128,12 @@
     text-align: center;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
-    transform: translate(-50%, 0%) /*this maked it center*/
+    transform: translate(-50%, 0%); /*this maked it center*/
 }
   
   .btn-group a {
 
-    display: inline-block;;
+    display: inline-block;
     list-style-type: none;
     padding: 10px 40px;
   }
@@ -148,11 +150,11 @@
     text-align: center;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
-    transform: translate(-50%, 0%) /*this maked it center*/
+    transform: translate(-50%, 0%); /*this maked it center*/
 }
   
   .header a {
-    display: inline-block;;
+    display: inline-block;
     list-style-type: none;
     color: #51bba1;
     padding: 4px 40px;
@@ -167,5 +169,46 @@
     max-height: 400px; 
     margin: 100px auto 110px auto;
   }
+
+  .comment{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: medium;
+  }
+
+  .time{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: x-small;
+  }
+
+  .user{
+    float: left;
+    background: lightblue;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin-right: 10px;
+
+ }
+
+ .comment-wrapper{
   
+
+ }
+
+ .comment-body{
+   text-align: left;
+   font-family: 'Montserrat', sans-serif;
+   font-size: medium;
+
+}
+
+.comment-footer{
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-size: x-small;
+}
   
