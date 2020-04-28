@@ -15,6 +15,7 @@
 
 
 <?php
+session_start(); // so we later can use session tag
 $link = mysqli_connect("localhost","root","");
 mysqli_select_db($link, "video");
 
@@ -36,9 +37,9 @@ while($row = $result->fetch_assoc())// mysqli_fetch_assoc($query))
     echo "</div>"; 
 }
 
-// Find User ID and sent to the user information table in phpMyAdmin
+// Find User IP and sent to the user information table in phpMyAdmin and get ID
 
-// Finding user ID
+// Finding user IP
 if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
     $ip = $_SERVER['HTTP_CLIENT_IP'];
 } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -49,11 +50,19 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 
 $sql2 = "SELECT 1 FROM user_information WHERE ip='".$ip."'";
 $objQuery2 = mysqli_query($link, $sql2);
-//Sending user ID	
+//Sending user IP	
+
 if(mysqli_num_rows($objQuery2) == 0){ //If it doesnt already exist
     $sql3 = "INSERT INTO user_information (id, ip, created_at) VALUES ('', '$ip', current_timestamp())";
     $objQuery3 = mysqli_query($link, $sql3);
-}				
+}  	
+
+// Getting unique user ID
+$statement = $link -> prepare("SELECT id FROM user_information WHERE ip='".$ip."'");
+$statement -> execute();
+$result = $statement -> get_result();
+$value = $result->fetch_object();
+$_SESSION["ip_id"] = $value->id;
 ?>
 
 

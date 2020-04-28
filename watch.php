@@ -34,9 +34,16 @@ mysqli_select_db($link, "video");
                     $time = $row['time'];
                 }
 
+                session_start();
+                $_SESSION["video_id"]=$id;
+
                 echo "<h2 class = 'videoTitle'>".$time."</h2> </br>";
                 echo "<video  class = 'video' width = '320' height = '240' controls src = '$url'> Your browser does not support the video tag. </video>";
-
+                
+                
+                echo "<form method='get' action='add_comment.php'>";
+                echo "  <input type='hidden' name='video_id' value='".$id."'>";
+                echo "</form>";
             }
             else{
                 echo "Error";
@@ -61,10 +68,8 @@ mysqli_select_db($link, "video");
 
     <div class="btn-group comment">
     <form method = "POST" id= "comment_form">
-              <div class = "comment">
-                  <input class = "bye" type = "text" name = "user_id" id = "user_id" 
-                  class = "form-control comment" placeholder = "enter user id" />
-                </div>
+               
+                
                 <div class = "comment">
                     <input name = "body" id = "body" class = "form-class comment-bar"
                     placeholder = "Add a Comment..."/>
@@ -91,6 +96,7 @@ mysqli_select_db($link, "video");
                 dataType: "JSON",
                 success:function(data)
                 {
+                    console.log("Elina er sød!");
                     
                     if(data.error != '')
                     {

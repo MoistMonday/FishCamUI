@@ -1,11 +1,12 @@
 <?php
-
+session_start();
+$video_id = $_SESSION["video_id"];
 
 $link = mysqli_connect("localhost","root","");
 mysqli_select_db($link, "video");
 $connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
 
-$query = "SELECT * FROM comments WHERE reply_id = '0' ORDER BY comment_id DESC";
+$query = "SELECT * FROM comments WHERE reply_id = '0' AND video_id = '".$video_id."' ORDER BY comment_id DESC";
 
 $objQuery = mysqli_query($link, $query);
 $output = '';
