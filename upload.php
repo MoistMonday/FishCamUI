@@ -44,16 +44,20 @@ if (isset ($_POST['submit']))
 
 ?>
 </div>
-<div class="videoBox header">
-<a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
+
+<div>
+    <div class="videoBox header">
+        <a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
+    </div>
+
+    <div class="btn-group">
+        <a href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+        <a href = "videos.php"> <img src= "filledfishcam.png" onmouseover = "this.src = 'filledfishcam.png'" onmouseout = "this.src = 'fishcam.png'" height="25" width="25">  </a>
+        <a href = "notification.php"> <img src= "bell.png" onmouseover = "this.src = 'filledbell.png'" onmouseout = "this.src = 'bell.png'"   height="25" width="25"> </a>
+        <a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
+    </div>
 </div>
 
-<div class="btn-group">
-<a href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
-<a href = "videos.php"> <img src= "filledfishcam.png" onmouseover = "this.src = 'filledfishcam.png'" onmouseout = "this.src = 'fishcam.png'" height="25" width="25">  </a>
-<a href = "notification.php"> <img src= "bell.png" onmouseover = "this.src = 'filledbell.png'" onmouseout = "this.src = 'bell.png'"   height="25" width="25"> </a>
-<a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
-</div>
 </div>
 </body>
 </html>

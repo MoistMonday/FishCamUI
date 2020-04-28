@@ -31,7 +31,7 @@ if ($error == ''){
             ':user_id' => $user_id
         )
     );
-    $error = '<label class ="text-success"> Comment added</label>';
+    $error = '<label class ="text-success"> </label>';
 }
 
 

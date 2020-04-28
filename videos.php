@@ -1,10 +1,3 @@
-<?php
-
-$link = mysqli_connect("localhost","root","");
-mysqli_select_db($link, "video");
-
-?>
-
 <!doctype html>
 <html>
 <head>
@@ -22,6 +15,8 @@ mysqli_select_db($link, "video");
 
 
 <?php
+$link = mysqli_connect("localhost","root","");
+mysqli_select_db($link, "video");
 
 $sql = "SELECT * FROM `uploaded_videos`";
 $result = $link -> query($sql) or die($link->error);
@@ -41,13 +36,30 @@ while($row = $result->fetch_assoc())// mysqli_fetch_assoc($query))
     echo "</div>"; 
 }
 
+// Find User ID and sent to the user information table in phpMyAdmin
 
+// Finding user ID
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+    $ip = $_SERVER['REMOTE_ADDR'];
+}
 
+$sql2 = "SELECT 1 FROM user_information WHERE ip='".$ip."'";
+$objQuery2 = mysqli_query($link, $sql2);
+//Sending user ID	
+if(mysqli_num_rows($objQuery2) == 0){ //If it doesnt already exist
+    $sql3 = "INSERT INTO user_information (id, ip, created_at) VALUES ('', '$ip', current_timestamp())";
+    $objQuery3 = mysqli_query($link, $sql3);
+}				
 ?>
+
+
+</div>
 <div class="videoBox header">
 <a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
-</div>
-
 </div>
 
 <div class="btn-group">
@@ -57,15 +69,6 @@ while($row = $result->fetch_assoc())// mysqli_fetch_assoc($query))
 <a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
 </div>
 </body>
-<script src="jquery-3.5.5.js"></script>
 
-<script> 
-    $(document).ready(function(){
-        $("videoTitle").click(function(){
-        alert("Clicked video");
-        window.location = 'watch.php';
-        });
-    });
-</script>
 
 </html>

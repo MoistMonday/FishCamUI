@@ -44,9 +44,7 @@ mysqli_select_db($link, "video");
 
         ?>
 
-        <div class="videoBox header">
-            <a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
-        </div>
+        
 
       
             <span id = "comment_message"></span>
@@ -56,17 +54,20 @@ mysqli_select_db($link, "video");
      </div>
 
     </div>
+    <div class="videoBox header">
+            <a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
+        </div>
 
 
-    <div class="btn-group comment-bar">
+    <div class="btn-group comment">
     <form method = "POST" id= "comment_form">
               <div class = "comment">
-                  <input type = "text" name = "user_id" id = "user_id" 
+                  <input class = "bye" type = "text" name = "user_id" id = "user_id" 
                   class = "form-control comment" placeholder = "enter user id" />
                 </div>
                 <div class = "comment">
-                    <textarea name = "body" id = "body" class = "form-class comment"
-                    placeholder = "Add a Comment..."></textarea>
+                    <input name = "body" id = "body" class = "form-class comment-bar"
+                    placeholder = "Add a Comment..."/>
                     <input type = "hidden" name = "comment_id" id = "comment_id" value = "0"/>
                     <input class = "button" type = "submit" name = "submit" id = "submit" 
                     class = "post" value = "POST" />
@@ -96,10 +97,12 @@ mysqli_select_db($link, "video");
                         $('#comment_form')[0].reset();
                         $('#comment_message').html(data.error);
                     }
+                    load_comment();
                 }
             })
         });
-        load_comment();
+
+        load_comment();        
 
 
         function load_comment(){

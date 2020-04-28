@@ -1,4 +1,6 @@
 <?php
+
+
 $link = mysqli_connect("localhost","root","");
 mysqli_select_db($link, "video");
 $connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
@@ -21,9 +23,9 @@ if (!$objQuery) {
                 '.$row["body"].' <br/>
             </div>
             <div class = "comment-footer comment-wrapper">
-                <i> '.$row["created_at"].' </i> 
-                <button type = "button" class = "btn btn-default reply" id = "'.$row["comment_id"].'">
-                    Reply
+                '.$row["created_at"].'  <b>•</b>   
+                <button type = "button" class = "btn btn-default reply reply-btn" id = "'.$row["comment_id"].'">
+                   <b> reply</b>
                 </button>
             </div>
         </div>';
@@ -36,6 +38,7 @@ if (!$objQuery) {
 echo $output;
 
 function get_reply_comment($connect, $reply_id = 0, $marginleft = 0){
+    $output = '';
     $query = "SELECT * FROM comments WHERE reply_id = '".$reply_id."'";
     $statement = $connect->prepare($query);
     $statement->execute();
@@ -60,9 +63,9 @@ function get_reply_comment($connect, $reply_id = 0, $marginleft = 0){
                     '.$row["body"].' <br/>
                 </div>
                 <div class = "comment-footer comment-wrapper">
-                    <i> '.$row["created_at"].' </i> 
-                    <button type = "button" class = "btn btn-default reply" id = "'.$row["comment_id"].'">
-                        Reply
+                    '.$row["created_at"].'  <b>•</b>    
+                    <button type = "button" class = "btn btn-default reply reply-btn" id = "'.$row["comment_id"].'">
+                        <b> reply</b>
                     </button>
                 </div>
             </div>';
