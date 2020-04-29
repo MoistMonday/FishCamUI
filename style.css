@@ -130,6 +130,8 @@
     text-align: center;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: medium;
     transform: translate(-50%, 0%); /*this maked it center*/
 }
   
@@ -245,5 +247,37 @@
 }
 
 .bye{
-  /*visibility: hidden;*/
+  /*display: none !important;*/
+}
+
+#poll-btn-group{
+  display: none;
+}
+
+#display_poll{
+  display: none;
+}
+
+
+
+.vote-btn-1{
+  color:#d34071;
+}
+
+.vote-btn-2{
+  color:#d58c3e;
+}
+
+.vote-btn-3{
+  color:#b0cc52;
+}
+
+.vote-btn-4{
+  color:#6a61ab;
+}
+
+#poll_headline{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: medium;
 }

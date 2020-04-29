@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2020 at 01:45 PM
+-- Generation Time: Apr 29, 2020 at 07:23 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -42,19 +42,56 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `reply_id`, `user_id`, `video_id`, `body`, `created_at`) VALUES
-(20, 0, 1, 0, 'it is a very nice fish\r\n', '2020-04-27 09:26:13'),
-(21, 0, 3, 0, 'I love fish! Trout is my fav <3', '2020-04-27 09:26:19'),
-(22, 0, 1, 0, 'I think it might be an alian', '2020-04-27 09:26:32'),
-(23, 20, 3, 0, 'I think so as well!', '2020-04-27 09:26:39'),
-(24, 22, 2, 0, 'you are stupid', '2020-04-27 09:26:47'),
-(25, 22, 3, 0, 'alien*', '2020-04-27 09:27:02'),
-(26, 0, 2, 0, 'this is super cool', '2020-04-27 09:27:08'),
-(27, 25, 1, 0, 'you know nothing', '2020-04-27 09:27:31'),
-(28, 21, 2, 0, 'same <3', '2020-04-27 09:27:53'),
-(29, 26, 13, 0, 'I have an unlucky user id', '2020-04-27 09:29:50'),
-(30, 29, 2, 0, 'k', '2020-04-27 09:30:23'),
-(31, 23, 4, 0, 'it mighrt be a ccrap', '2020-04-27 10:40:58'),
-(32, 0, 4, 0, 'crap fun', '2020-04-27 10:41:19');
+(66, 0, 2, 18, 'virker du?', '2020-04-28 13:41:19'),
+(117, 0, 2, 24, 'I think it is a Dwarf pygmy goby because it is so small', '2020-04-29 06:56:27'),
+(118, 117, 3, 24, 'It might eventuelt just be a pygmy goby it is not that small', '2020-04-29 06:57:28'),
+(119, 118, 2, 24, 'maybe?', '2020-04-29 06:57:46'),
+(120, 0, 1, 24, 'I think it is a trout', '2020-04-29 06:58:14'),
+(121, 119, 1, 24, 'Assad er min ven. Og du er en dum sild din smutsling basse bum bit uyts', '2020-04-29 06:58:43'),
+(122, 121, 1, 24, 'asas', '2020-04-29 06:58:52'),
+(123, 121, 1, 24, 'asdasd', '2020-04-29 06:58:56'),
+(124, 123, 1, 24, 'asdasd', '2020-04-29 06:58:58'),
+(125, 124, 1, 24, 'sadasda', '2020-04-29 06:59:01'),
+(126, 125, 1, 24, 'asdasdasd', '2020-04-29 06:59:03'),
+(127, 126, 1, 24, 'asdasdasd', '2020-04-29 06:59:06'),
+(128, 127, 1, 24, 'asdasd', '2020-04-29 06:59:09'),
+(129, 128, 1, 24, 'asdasdasd', '2020-04-29 06:59:13'),
+(130, 129, 1, 24, 'asdasd', '2020-04-29 06:59:16'),
+(131, 0, 2, 24, 'hey you are nice', '2020-04-29 07:28:16'),
+(132, 131, 3, 24, 'Yes you are', '2020-04-29 07:28:38'),
+(133, 0, 2, 26, 's', '2020-04-29 07:30:06'),
+(134, 0, 2, 24, 'hej', '2020-04-29 11:27:57'),
+(135, 134, 2, 24, 'hej', '2020-04-29 11:28:03'),
+(136, 0, 2, 26, 'hej', '2020-04-29 15:00:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `poll`
+--
+
+CREATE TABLE `poll` (
+  `id` int(11) NOT NULL,
+  `video_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `roi_id` int(11) NOT NULL,
+  `classification` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `poll`
+--
+
+INSERT INTO `poll` (`id`, `video_id`, `user_id`, `roi_id`, `classification`) VALUES
+(1, 26, 2, 0, 'Trout'),
+(2, 26, 2, 0, 'Trout'),
+(4, 26, 2, 0, '23'),
+(5, 26, 2, 0, '2'),
+(6, 26, 2, 0, 'trout'),
+(7, 26, 2, 0, '44'),
+(8, 26, 2, 0, '23'),
+(9, 26, 2, 1, 'Trout'),
+(10, 26, 2, 3, 'trout');
 
 -- --------------------------------------------------------
 
@@ -66,18 +103,19 @@ CREATE TABLE `uploaded_videos` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp()
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `roiAmount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `uploaded_videos`
 --
 
-INSERT INTO `uploaded_videos` (`id`, `name`, `url`, `time`) VALUES
-(18, 'slave scene.mp4', 'http://localhost/MiniProject/Uploaded/slave scene.mp4', '2020-04-24 11:00:31'),
-(21, 'Comp 1_1.mp4', 'http://localhost/MiniProject/Uploaded/Comp 1_1.mp4', '2020-04-24 12:12:15'),
-(22, 'Comp 1_3.mp4', 'http://localhost/MiniProject/Uploaded/Comp 1_3.mp4', '2020-04-24 12:13:25'),
-(23, 'gay scene.mp4', 'http://localhost/MiniProject/Uploaded/gay scene.mp4', '2020-04-24 15:32:22');
+INSERT INTO `uploaded_videos` (`id`, `name`, `url`, `time`, `roiAmount`) VALUES
+(24, '2019-02-20_19-01-02to2019-02-20_19-01-13_1 (1).mp4', 'http://localhost/MiniProject/Uploaded/2019-02-20_19-01-02to2019-02-20_19-01-13_1 (1).mp4', '2020-04-29 06:54:21', 2),
+(25, '2019-02-20_19-19-23to2019-02-20_19-19-40_1.mp4', 'http://localhost/MiniProject/Uploaded/2019-02-20_19-19-23to2019-02-20_19-19-40_1.mp4', '2020-04-29 06:54:32', 1),
+(26, '2019-02-20_19-01-02to2019-02-20_19-01-13_1 (1).mp4', 'http://localhost/MiniProject/Uploaded/2019-02-20_19-01-02to2019-02-20_19-01-13_1 (1).mp4', '2020-04-29 06:54:52', 3),
+(27, '2019-02-20_19-19-23to2019-02-20_19-19-40_1.mp4', 'http://localhost/MiniProject/Uploaded/2019-02-20_19-19-23to2019-02-20_19-19-40_1.mp4', '2020-04-29 06:55:07', 4);
 
 -- --------------------------------------------------------
 
@@ -92,6 +130,16 @@ CREATE TABLE `user_information` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `user_information`
+--
+
+INSERT INTO `user_information` (`id`, `ip`, `created_at`) VALUES
+(1, '192.168.87.192', '2020-04-28 11:05:12'),
+(2, '::1', '2020-04-28 11:05:17'),
+(3, '192.168.87.138', '2020-04-28 15:03:06'),
+(4, '192.168.87.181', '2020-04-28 15:03:29');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -100,6 +148,12 @@ CREATE TABLE `user_information` (
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`);
+
+--
+-- Indexes for table `poll`
+--
+ALTER TABLE `poll`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `uploaded_videos`
@@ -121,19 +175,25 @@ ALTER TABLE `user_information`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+
+--
+-- AUTO_INCREMENT for table `poll`
+--
+ALTER TABLE `poll`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `uploaded_videos`
 --
 ALTER TABLE `uploaded_videos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `user_information`
 --
 ALTER TABLE `user_information`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
