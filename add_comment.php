@@ -8,17 +8,11 @@ $user_id = $_SESSION["ip_id"];
 $connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
 
 $error = '';
-//$user_id2= '';
 $body = '';
 
-//if(empty($_POST['user_id2'])){
-//    $error .= '<p class "text-danger"> user id requried </p>';
-//}else {
-//    $user_id2 = $_POST['user_id2'];
-//}
 
 if(empty($_POST["body"])){
-    $error .= '<p class "text-danger"> comment is requried </p>';
+    $error .= '<script type= "text/javascript"> alert("Add a comment before clicking POST"); </script>';
 }else{
     $body = $_POST["body"];
 }

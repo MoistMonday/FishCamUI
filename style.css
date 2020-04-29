@@ -144,7 +144,7 @@
     margin: 0;
     float: left;
     overflow: hidden;
-    background-color: #ecfaf9;
+    background-color: #fafafa;
     position: fixed;
     display: inline-flex;
     justify-content: center;
@@ -245,5 +245,5 @@
 }
 
 .bye{
-  /*display: none;*/
+  /*visibility: hidden;*/
 }
