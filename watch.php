@@ -59,23 +59,23 @@ mysqli_select_db($link, "video");
             <div id = "display_comment"></div>
 
     
-            <div id = "display_poll"> 
+            <div id = "poll"> 
                 <div id = "poll_headline">
                 What species do you see in the marked area?
                 </div>
 
-                <div id = "classifications">
-
-                </div> 
-
                 <form method = "POST" id= "poll_form">
-                    <div class = "poll">
-                        <input name = "suggestion" id = "suggestion" class = "form-class poll-input"
-                        placeholder = "Add a suggestion here..."/> </br>
-                            <div class = "btn-group">
-                            <input class = "button" type = "submit" name = "submit" id = "submit" 
-                            class = "post" value = "VOTE" />
-                            </div>
+                    <div id = "display_poll">
+
+                        <!--
+                        <input type="radio" name = "suggestion" id = "suggestion" value="Fish">Fish<br>
+                        <input type="radio" name="suggestion" id = "suggestion" value="Salmon">Salmon<br>
+                        <input type="radio" name="suggestion" id = "suggestion" value="Trout">Trout<br>
+                        <input type="radio" name="suggestion" id = "suggestion" value="">Other 
+                        <input type="text" name="suggestion" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+                        <input class = "button" type = "submit" name = "submit" id = "submit" 
+                        class = "post" value = "VOTE" /> 
+                        -->
                     </div>     
                 </form>
             </div>
@@ -174,17 +174,17 @@ mysqli_select_db($link, "video");
             })
         });
 
-        function load_poll(){
+    });
+    function load_poll(){
             $.ajax({
-                url: "fetch_poll.php",
+                url: "fetch_vote.php",
                 method: "POST", 
                 success:function(data){
-                    $('#classifications').html(data);
+                    $('#display_poll').html(data);
                 }
             })
         }
 
-    });
     function createCookie(name, value, days) { 
         var expires; 
     
@@ -198,15 +198,18 @@ mysqli_select_db($link, "video");
         } 
         document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/"; 
     }
+    
+    //makes comments disapear and the vote option apear
     function displayPoll(roi_id) {
-        
+
             var roi_identity = roi_id;
             createCookie("roi_id", roi_identity, "1");
             console.log(roi_identity);
 
             var commentSection = document.getElementById("display_comment");
             var commentBar = document.getElementById("comment-btn-group");
-            var pollSection = document.getElementById("display_poll");
+            var pollSection = document.getElementById("poll");
+            var pollChoices = document.getElementById("display_poll");
             var pollBar = document.getElementById("poll-btn-group");
             var pollHeadline = document.getElementById("poll_headline");
             if (roi_id == 1){
@@ -225,12 +228,16 @@ mysqli_select_db($link, "video");
                 commentBar.setAttribute('style', 'display: inline !important');
                 pollSection.setAttribute('style', 'display: none !important');
                 pollBar.setAttribute('style', 'display: none !important');
+                pollChoices.setAttribute('style', 'display: none !important');
 
             } else {
                 commentSection.setAttribute('style', 'display: none !important');
                 commentBar.setAttribute('style', 'display: none !important');
+                pollChoices.setAttribute('style', 'display: inline !important');
                 pollSection.setAttribute('style', 'display: inline !important');
                 pollBar.setAttribute('style', 'display: inline !important');
-            }            
+            }     
+            
+            load_poll();
         }
     </script>
