@@ -47,11 +47,13 @@ mysqli_select_db($link, "video");
             }
             //poll buttons
             $button = '';
+            echo "<div id= 'roi_buttons'>";
             for($i = 0; $i < $roiAmount; $i++){
                 $roi_id = $i+1;
                 $button = '<button class = "vote-btn-'.$roi_id.'" onclick = "displayPoll('.$roi_id.')" > Vote </button>';
                 echo $button;
             }
+            echo "</div>";
         ?>
             
             <span id = "comment_message"></span>
@@ -65,17 +67,8 @@ mysqli_select_db($link, "video");
                 </div>
 
                 <form method = "POST" id= "poll_form">
-                    <div id = "display_poll">
+                    <div id = "display_poll" class = "poll_style">
 
-                        <!--
-                        <input type="radio" name = "suggestion" id = "suggestion" value="Fish">Fish<br>
-                        <input type="radio" name="suggestion" id = "suggestion" value="Salmon">Salmon<br>
-                        <input type="radio" name="suggestion" id = "suggestion" value="Trout">Trout<br>
-                        <input type="radio" name="suggestion" id = "suggestion" value="">Other 
-                        <input type="text" name="suggestion" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-                        <input class = "button" type = "submit" name = "submit" id = "submit" 
-                        class = "post" value = "VOTE" /> 
-                        -->
                     </div>     
                 </form>
             </div>
@@ -166,9 +159,12 @@ mysqli_select_db($link, "video");
                 dataType: "JSON",
                 success:function(data)
                 {    
+                    $('#display_poll').html(data.pollResults);
+                    console.log(data);
                     if(data.error != '')
                     {
                         $('#poll_form')[0].reset();
+                        console.log(data.error);
                     }
                 }
             })
@@ -176,11 +172,21 @@ mysqli_select_db($link, "video");
 
     });
     function load_poll(){
+
+            console.log("Loading polls");
+
             $.ajax({
                 url: "fetch_vote.php",
-                method: "POST", 
+                method: "POST",
+                dataType: "JSON",
                 success:function(data){
-                    $('#display_poll').html(data);
+                    //console.log(data.output);
+                    $('#display_poll').html(data.output);
+
+                    if(data.error != '')
+                    {
+                        console.log(data.error);
+                    }
                 }
             })
         }
@@ -212,7 +218,30 @@ mysqli_select_db($link, "video");
             var pollChoices = document.getElementById("display_poll");
             var pollBar = document.getElementById("poll-btn-group");
             var pollHeadline = document.getElementById("poll_headline");
-            if (roi_id == 1){
+            var roiButtons = document.getElementById("roi_buttons");
+
+
+            if (commentSection.style.display == "none") {
+                commentSection.setAttribute('style', 'display: inline !important');
+                commentBar.setAttribute('style', 'display: inline !important');
+                
+                pollSection.setAttribute('style', 'display: none !important');
+                pollBar.setAttribute('style', 'display: none !important');
+                pollChoices.setAttribute('style', 'display: none !important');
+                pollHeadline.setAttribute('style', 'display: none !important');
+
+            } else {
+                commentSection.setAttribute('style', 'display: none !important');
+                commentBar.setAttribute('style', 'display: none !important');
+                roiButtons.setAttribute('style', 'display: none !important');
+
+                pollChoices.setAttribute('style', 'display: inline !important');
+                pollSection.setAttribute('style', 'display: inline !important');
+                pollBar.setAttribute('style', 'display: inline !important');
+                pollHeadline.setAttribute('style', 'display: inline !important');
+                
+
+                if (roi_id == 1){
                     pollHeadline.style.color = "#d34071";
                 } else if (roi_id == 2){
                     pollHeadline.style.color = "#d58c3e";
@@ -221,23 +250,8 @@ mysqli_select_db($link, "video");
                 } else if (roi_id == 4){
                     pollHeadline.style.color = "#6a61ab";
                 }
-
-
-            if (commentSection.style.display == "none") {
-                commentSection.setAttribute('style', 'display: inline !important');
-                commentBar.setAttribute('style', 'display: inline !important');
-                pollSection.setAttribute('style', 'display: none !important');
-                pollBar.setAttribute('style', 'display: none !important');
-                pollChoices.setAttribute('style', 'display: none !important');
-
-            } else {
-                commentSection.setAttribute('style', 'display: none !important');
-                commentBar.setAttribute('style', 'display: none !important');
-                pollChoices.setAttribute('style', 'display: inline !important');
-                pollSection.setAttribute('style', 'display: inline !important');
-                pollBar.setAttribute('style', 'display: inline !important');
             }     
-            
+
             load_poll();
         }
     </script>
