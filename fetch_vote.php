@@ -5,20 +5,25 @@ $user_id = $_SESSION["ip_id"];
 $roi_id = $_COOKIE["roi_id"]; 
 
 $error = '';
+$output = '';
+$headline = 'What species do you see in the marked area?';
 
 $connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
 
-// $sql = "SELECT 1 FROM poll WHERE user_id=:user_id AND roi_id=:roi_id AND video_id=:video_id";
-// $statement3 = $connect->prepare($sql);
-// $res3 = $statement3->execute(
-//     array(
-//         ':user_id' => $user_id,
-//         ':roi_id' => $roi_id,
-//         ':video_id' => $video_id
-//     )
-// );
+$sql = "SELECT id FROM poll WHERE user_id=:user_id AND roi_id=:roi_id AND video_id=:video_id";
+$statement3 = $connect->prepare($sql);
+$res3 = $statement3->execute(
+    array(
+        ':user_id' => $user_id,
+        ':roi_id' => $roi_id,
+        ':video_id' => $video_id
+    )
+);
 
-//if($res3->rowCount() == 0) { // If user didnt submit
+$result3 = $statement3->fetchAll();
+//$error .= implode(", ", $result3);
+
+if(count($result3) == 0) { // If user didnt submit
 
     $query = "SELECT classification FROM poll WHERE roi_id=:roi_id AND video_id=:video_id ";
 
@@ -38,12 +43,13 @@ $connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
 
     //$output = '<div id = "poll_headline"> What species do you see in the marked area? </div>';
     $output = '';
-
     if (!empty($result)){
         $uniqueResults = array_unique(array_map('strtolower', $result));
 
         foreach ($uniqueResults as $uniq) {
-            $output .= "<input type='radio' name = 'suggestion' id = 'suggestion' value='$uniq'>$uniq<br>";
+            $output .= "<label>
+            <input type='radio' name = 'suggestion' id = 'suggestion' value='$uniq'><span>$uniq</span><br>
+            </label>";
         }
 
 
@@ -56,19 +62,54 @@ $connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
     }
 
 
-    $output .= '
-    <input type="radio" name="suggestion" id = "suggestion" value="">Other 
-    <input type="text" name="other-suggestion" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​ <br>
-    <input class = "btn-group" type = "submit" name = "submit" id = "submit" class = "post" value = "VOTE" />
+    $output .= '<div class = "Add-box">
+    <label>
+    <input type="radio" name="suggestion" id = "suggestion" value=""><div class = "Add-check">Add Suggestion</div> 
+    </label>
+    <input type="text" class = "Add-text" name="other-suggestion" placeholder = "Write your own suggestion..." />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​ </br>
+    </div>
+    <input class = "vote-btn-group vote-button" type = "submit" name = "submit" id = "submit" class = "post" value = "VOTE" />
     ';
+} else{
+    //getting the results of the whole poll
+    $output = '';
+    $query2 = "SELECT classification FROM poll WHERE roi_id=:roi_id AND video_id=:video_id ";
 
-
-    $data = array (
-        'error' => $error,
-        'output' => $output
+    $statement2 = $connect->prepare($query2);
+    $res2 = $statement2->execute(
+        array(
+            ':roi_id' => $roi_id,
+            ':video_id' => $video_id
+        )
     );
 
-    echo json_encode($data);
-//}
+    if(!$res2) {
+        $error = "Error: " . $statement2->errorInfo()[2];
+    }
+
+    $result2 = $statement2->fetchAll(PDO::FETCH_COLUMN, 0);
+
+    $numberOfVotes = count($result2);
+
+    if (!empty($result2)){
+
+        $countClassification = array_count_values(array_map('strtolower', $result2));
+        arsort($countClassification);
+        //$pollResults .= "<p> ".$countClassification['Trout']." </p>";
+        foreach ($countClassification as $specie => $count) {
+            $percentage = round($count/$numberOfVotes*100);
+            $output .= "<p class ='results'> $specie  $percentage% </p>";
+        }
+        $output .= '<button class = "vote-btn-group vote-button" onClick="window.location.reload();">Okay</button>';
+        $headline = 'What People Think';
+    }
+}
+$data = array (
+    'error' => $error,
+    'output' => $output,
+    'headline' => $headline
+);
+
+echo json_encode($data);
 
 ?>

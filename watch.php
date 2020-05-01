@@ -39,7 +39,7 @@ mysqli_select_db($link, "video");
                 $_SESSION["video_id"]=$id;
 
                 echo "<h2 class = 'videoTitle'>".$time."</h2> </br>";
-                echo "<video  class = 'video' width = '320' height = '240' controls src = '$url'> Your browser does not support the video tag. </video>";
+                echo "<video  class = 'video' width = '320' height = '240' controls src = '$url' controls autoplay controls loop> Your browser does not support the video tag. </video>";
                 
             }
             else{
@@ -50,7 +50,7 @@ mysqli_select_db($link, "video");
             echo "<div id= 'roi_buttons'>";
             for($i = 0; $i < $roiAmount; $i++){
                 $roi_id = $i+1;
-                $button = '<button class = "vote-btn-'.$roi_id.'" onclick = "displayPoll('.$roi_id.')" > Vote </button>';
+                $button = '<button class = "vote-btn vote-btn-'.$roi_id.'" onclick = "displayPoll('.$roi_id.')" > <b>Suggest Species</b> </button>';
                 echo $button;
             }
             echo "</div>";
@@ -63,10 +63,10 @@ mysqli_select_db($link, "video");
     
             <div id = "poll"> 
                 <div id = "poll_headline">
-                What species do you see in the marked area?
+                <b>What species do you see in the marked area?</b></br> </br> 
                 </div>
 
-                <form method = "POST" id= "poll_form">
+                <form method = "POST" id= "poll_form" >
                     <div id = "display_poll" class = "poll_style">
 
                     </div>     
@@ -116,7 +116,7 @@ mysqli_select_db($link, "video");
                 dataType: "JSON",
                 success:function(data)
                 {
-                    console.log("Elina er sød!");
+                    console.log(data);
                     
                     if(data.error != '')
                     {
@@ -160,6 +160,8 @@ mysqli_select_db($link, "video");
                 success:function(data)
                 {    
                     $('#display_poll').html(data.pollResults);
+                    $('#poll_headline').html(data.headline);
+            
                     console.log(data);
                     if(data.error != '')
                     {
@@ -180,8 +182,9 @@ mysqli_select_db($link, "video");
                 method: "POST",
                 dataType: "JSON",
                 success:function(data){
-                    //console.log(data.output);
+                    console.log(data);
                     $('#display_poll').html(data.output);
+                    $('#poll_headline').html(data.headline);
 
                     if(data.error != '')
                     {

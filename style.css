@@ -58,10 +58,10 @@
 }
 /* elinas stupid buttons*/
 .button{
-    background-color: #ffffff; /* Green */
-    border: 2px solid #51bba1;
+    background-color: #51bba1; /* Green */
+    color: white;
     border-radius: 20px;
-    color: #51bba1;
+    border: none;
     padding: 20px 0px;
     width: 20%;
     height: 100%;
@@ -78,9 +78,8 @@
 }
 
 .button:hover{
-    background-color: #51bba1; /* Green */
-    color: white;
-
+    background-color: #44a38b; /* Green */
+    
 }
 
 /*
@@ -236,6 +235,7 @@
   font-weight: 500;
   font-size: medium;
   border-radius: 20px;
+  border:  none;
   padding: 2.5px 5px;
   width: 70%;
   max-width: 1000px;
@@ -259,30 +259,200 @@
 }
 
 
-
-.vote-btn-1{
-  color:#d34071;
-}
-
-.vote-btn-2{
-  color:#d58c3e;
-}
-
-.vote-btn-3{
-  color:#b0cc52;
-}
-
-.vote-btn-4{
-  color:#6a61ab;
-}
-
-#poll_headline{
+.vote-btn{
+  border: none;
+  border-radius: 8px;
+  padding: 1% 4%;
+  color: white;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: medium;
-  display: none;
+  margin: 1%;
+
+
+}
+.vote-btn-1{
+  background:#d34071;
+  
+}
+.vote-btn-1:hover{
+  background:#b63962; /* Green */
+  
 }
 
-.poll_style{
-  font-family: 'Montserrat', sans-serif;
+.vote-btn-2{
+  background:#d58c3e;
+  
 }
+
+.vote-btn-2:hover{
+  background:#c27f38;
+  
+}
+
+.vote-btn-3{
+  background:#b0cc52;
+}
+.vote-btn-3:hover{
+  background:#95ad46;
+}
+
+.vote-btn-4{
+  background:#6a61ab;
+}
+.vote-btn-4:hover{
+  background:#58518f;
+}
+
+
+
+.vote-btn-group {
+  margin: 0;
+
+  
+  overflow: hidden;
+  background-color: #f2f2f2;
+  position: fixed;
+  
+  justify-content: center;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: medium;
+  transform: translate(-50%, 0%); /*this maked it center*/
+}
+
+.vote-button{
+  background-color: #51bba1; /* Green */
+  color: white;
+  width: 100%;
+  max-width: 960px;
+  border: none;
+  padding: 20px 0px;
+
+}
+.vote-button:hover{
+  background-color: #44a38b; /* Green */
+  }
+
+  .poll{
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+  
+  }
+
+  #poll_headline{
+    text-transform:capitalize;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: x-large;
+    display: none;
+    padding: 2% 2%;
+  }
+  
+  .poll_style{
+    font-family: 'Montserrat', sans-serif;
+    max-width: 960px;
+  }
+
+  .poll_style label{
+    position: relative;
+    cursor: pointer;
+    
+
+  }
+
+  .poll_style label input{
+    display: none !important; 
+  }
+
+  .poll_style label span{
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    text-transform:capitalize;
+    text-align: left;
+    padding:2% 0%;
+    padding-left: 2%;
+    padding-left: 2%;
+    font-weight: 600;
+    font-size: medium;
+    position: relative;
+    margin: 0px 0px;
+    width: 98%;
+    max-width: 960px;
+    background-color: white;
+    border: 1px solid  #51bba1;
+    color: #51bba1;
+
+  }
+
+  .poll_style label span:hover{
+    background-color: #51bba1;
+    border: 1px solid  #51bba1;
+    color: white;
+  }
+
+  .poll_style label input:checked ~ span{
+    background-color: #51bba1;
+    border: 1px solid  #51bba1;
+    color: white;
+  }
+
+  .Add-box{
+    display: inline-flex; 
+    width: 100%;      
+    
+  }
+
+  .Add-text{
+    
+    
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: medium;
+    width: 100%;
+    max-width: 960px;
+    border: 1px solid  #51bba1;
+    padding:2% 0%;
+    padding-left: 5%;
+  }
+
+  .Add-check{
+    max-width: 150px;
+    width: 100%;
+    padding:10% 0%;
+    padding-left: 10%;
+    font-weight: 600;
+    font-size: medium;
+    text-align: left;
+    background-color: white;
+    border: 1px solid  #51bba1;
+    color: #51bba1;
+
+  }
+  .poll_style label .Add-check:hover{
+    background-color: #51bba1;
+    border: 1px solid  #51bba1;
+    color: white;
+    
+  }
+
+  .poll_style label input:checked ~ .Add-check{
+    background-color: #51bba1;
+    border: 1px solid  #51bba1;
+    color: white;
+
+  }
+
+  .results{
+    text-transform:capitalize;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: x-large;
+    color: #51bba1;
+
+  }
+
+  

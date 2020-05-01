@@ -6,6 +6,7 @@ $roi_id = $_COOKIE["roi_id"];
 
 $error = '';
 $suggestion = '';
+$headline = 'What species do you see in the marked area?';
 
 try{
     $connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
@@ -76,14 +77,16 @@ if (!empty($result2)){
     //$pollResults .= "<p> ".$countClassification['Trout']." </p>";
     foreach ($countClassification as $specie => $count) {
         $percentage = round($count/$numberOfVotes*100);
-        $pollResults .= "<p> $specie  $percentage % </p>";
+        $pollResults .= "<p class = 'results'> $specie  $percentage% </p>";
     }
-    $pollResults .= '<button class = "btn-group" onClick="window.location.reload();">Okay</button>';
+    $pollResults .= '<button class = "vote-btn-group vote-button" onClick="window.location.reload();">Okay</button>';
+    $headline = 'What People Think';
 }
 
 $data = array (
     'error' => $error,
-    'pollResults' => $pollResults
+    'pollResults' => $pollResults,
+    'headline' => $headline
 );
 
 echo json_encode($data);
