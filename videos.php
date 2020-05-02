@@ -53,7 +53,7 @@ $objQuery2 = mysqli_query($link, $sql2);
 //Sending user IP	
 
 if(mysqli_num_rows($objQuery2) == 0){ //If it doesnt already exist
-    $sql3 = "INSERT INTO user_information (id, ip, created_at) VALUES ('', '$ip', current_timestamp())";
+    $sql3 = "INSERT INTO user_information (ip, created_at) VALUES ('$ip', current_timestamp())";
     $objQuery3 = mysqli_query($link, $sql3);
 }  	
 
