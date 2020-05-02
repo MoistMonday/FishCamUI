@@ -34,10 +34,10 @@ mysqli_select_db($link, "video");
 </div>
 
 <div class="btn-group">
-<a href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a class = "upload-btn" href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a href = "liked.php"> <img src= "filledheart.png" height="25" width="25"> </a>
 <a href = "videos.php"> <img src= "filledfishcam.png" onmouseover = "this.src = 'filledfishcam.png'" onmouseout = "this.src = 'fishcam.png'" height="25" width="25">  </a>
 <a href = "notification.php"> <img src= "bell.png" onmouseover = "this.src = 'filledbell.png'" onmouseout = "this.src = 'bell.png'"   height="25" width="25"> </a>
-<a href = "liked.php"> <img src= "filledheart.png" height="25" width="25"> </a>
 </div>
 </body>
 </html>

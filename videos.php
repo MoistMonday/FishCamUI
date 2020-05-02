@@ -72,10 +72,11 @@ $_SESSION["ip_id"] = $value->id;
 </div>
 
 <div class="btn-group">
-<a class = "bye" href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a class = "upload-btn" href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
 <a href = "videos.php"> <img src= "filledfishcam.png" height="25" width="25">  </a>
 <a href = "notification.php"> <img src= "bell.png" onmouseover = "this.src = 'filledbell.png'" onmouseout = "this.src = 'bell.png'"   height="25" width="25"> </a>
-<a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
+
 </div>
 </body>
 

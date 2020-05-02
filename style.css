@@ -475,4 +475,9 @@
     padding: 5%;
   }
 
+  .upload-btn{
+    display: none !important
+
+  }
+
   
