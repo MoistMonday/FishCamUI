@@ -1,6 +1,12 @@
 <?php
 
 $link = mysqli_connect("localhost","fishuser","vapfolks20636");
+
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+
 mysqli_select_db($link, "video");
 
 if (isset($_POST['submit']))
@@ -10,7 +16,9 @@ if (isset($_POST['submit']))
 
     move_uploaded_file($temp, "Uploaded/".$name);
     $url = "http://localhost/MiniProject/Uploaded/$name";
-    mysqli_query($link, "INSERT INTO `uploaded_videos` (`name`, `url`, `time`) VALUES ('$name', '$url', current_timestamp())");
+    $res = mysqli_query($link, "INSERT INTO `uploaded_videos` (`name`, `url`, `time`) VALUES ('$name', '$url', current_timestamp())");
+
+    if($res) printf("Query failed: %s\n", mysqli_error($link));
 }
 
 ?>
