@@ -5,7 +5,7 @@ $user_id = $_SESSION["ip_id"];
 
 //$link = mysqli_connect("localhost","root","");
 //mysqli_select_db($link, "video");
-$connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
+$connect = new PDO('mysql:host=localhost;dbname=video', 'fishuser','vapfolks20636');
 
 $error = '';
 $body = '';

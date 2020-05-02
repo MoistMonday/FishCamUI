@@ -1,6 +1,6 @@
 <?php
 
-$link = mysqli_connect("localhost","root","");
+$link = mysqli_connect("localhost","fishuser","vapfolks20636");
 mysqli_select_db($link, "video");
 
 ?>

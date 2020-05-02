@@ -16,7 +16,7 @@
 
 <?php
 session_start(); // so we later can use session tag
-$link = mysqli_connect("localhost","root","");
+$link = mysqli_connect("localhost","fishuser","vapfolks20636");;
 mysqli_select_db($link, "video");
 
 $sql = "SELECT * FROM `uploaded_videos`";
