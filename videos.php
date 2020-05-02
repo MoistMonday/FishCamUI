@@ -33,7 +33,7 @@ while($row = $result->fetch_assoc())// mysqli_fetch_assoc($query))
     //echo "<a href = 'watch.php?id=$id'> $name </a><br />";
     echo '<div class = "videoBox">';
     echo "<a href='watch.php?id=$id' class = 'videoTitle'> $time </h2>";
-    echo "<video class = 'video' width = '320' height = '240' controls src = '$url' controls autoplay controls loop> Your browser does not support the video tag. </video>";
+    echo "<video class = 'video' width = '320' height = '240' src = '$url' autoplay loop> Your browser does not support the video tag. </video>";
     echo "</div>"; 
 }
 
@@ -67,7 +67,7 @@ $_SESSION["ip_id"] = $value->id;
 
 
 </div>
-<div class="videoBox header">
+<div class="videoBox header video_header">
 <a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
 </div>
 

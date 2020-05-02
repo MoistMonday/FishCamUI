@@ -18,7 +18,7 @@
     
   padding: 2%;
   margin-bottom: 5%;
-  margin-top: 2%;
+  margin-top: 7%;
   height: 100%;
 }
 
@@ -164,6 +164,11 @@
     padding: 4px 40px;
     text-decoration: none;
     font-size: 17px;
+  }
+
+  .video_header a{
+    transform: translate(-23%, 0%);  
+
   }
 
   .upload{
@@ -324,6 +329,11 @@
   transform: translate(-50%, 0%); /*this maked it center*/
 }
 
+.Vote-btn{
+  transform: translate(-96%, 0%);
+
+}
+
 .vote-button{
   background-color: #51bba1; /* Green */
   color: white;
@@ -453,6 +463,16 @@
     font-size: x-large;
     color: #51bba1;
 
+  }
+
+  .construction{
+    display: block;
+    
+    width: 90%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
   }
 
   

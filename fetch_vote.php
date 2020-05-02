@@ -68,7 +68,7 @@ if(count($result3) == 0) { // If user didnt submit
     </label>
     <input type="text" class = "Add-text" name="other-suggestion" placeholder = "Write your own suggestion..." />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​ </br>
     </div>
-    <input class = "vote-btn-group vote-button" type = "submit" name = "submit" id = "submit" class = "post" value = "VOTE" />
+    <input class = "vote-btn-group vote-button Vote-btn" type = "submit" name = "submit" id = "submit" class = "post" value = "VOTE" />
     ';
 } else{
     //getting the results of the whole poll
