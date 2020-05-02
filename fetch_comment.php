@@ -2,7 +2,7 @@
 session_start();
 $video_id = $_SESSION["video_id"];
 
-$link = mysqli_connect("localhost","root","");
+$link = mysqli_connect("localhost","fishuser","vapfolks20636");
 mysqli_select_db($link, "video");
 $connect = new PDO('mysql:host=localhost;dbname=video',"fishuser","vapfolks20636");
 
