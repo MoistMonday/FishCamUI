@@ -10,7 +10,7 @@ if (isset($_POST['submit']))
 
     move_uploaded_file($temp, "Uploaded/".$name);
     $url = "http://localhost/MiniProject/Uploaded/$name";
-    mysqli_query($link, "INSERT INTO `uploaded_videos` (`id`, `name`, `url`, `time`) VALUES ('', '$name', '$url', current_timestamp())");
+    mysqli_query($link, "INSERT INTO `uploaded_videos` (`name`, `url`, `time`) VALUES ('$name', '$url', current_timestamp())");
 }
 
 ?>
