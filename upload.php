@@ -16,7 +16,7 @@ if (isset($_POST['submit']))
 
     move_uploaded_file($temp, "Uploaded/".$name);
     $url = "http://localhost/MiniProject/Uploaded/$name";
-    $res = mysqli_query($link, "INSERT INTO `uploaded_videos` (`name`, `url`, `time`) VALUES ('$name', '$url', current_timestamp())");
+    $res = mysqli_query($link, "INSERT INTO `uploaded_videos` (`name`, `url`, `time`, `roiAmount`) VALUES ('$name', '$url', current_timestamp(), 0)");
 
     if(!$res) printf("Query failed: %s\n", mysqli_error($link));
 }
