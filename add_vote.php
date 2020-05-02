@@ -9,7 +9,7 @@ $suggestion = '';
 $headline = 'What species do you see in the marked area?';
 
 try{
-    $connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
+    $connect = new PDO('mysql:host=localhost;dbname=video',"fishuser","vapfolks20636");
 }catch(PDOException $e){
     $error = $e->getMessage();
 }

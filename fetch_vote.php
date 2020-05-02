@@ -8,7 +8,7 @@ $error = '';
 $output = '';
 $headline = 'What species do you see in the marked area?';
 
-$connect = new PDO('mysql:host=localhost;dbname=video', 'root','');
+$connect = new PDO('mysql:host=localhost;dbname=video',"fishuser","vapfolks20636");
 
 $sql = "SELECT id FROM poll WHERE user_id=:user_id AND roi_id=:roi_id AND video_id=:video_id";
 $statement3 = $connect->prepare($sql);
