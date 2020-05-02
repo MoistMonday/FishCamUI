@@ -33,7 +33,7 @@ while($row = $result->fetch_assoc())// mysqli_fetch_assoc($query))
     //echo "<a href = 'watch.php?id=$id'> $name </a><br />";
     echo '<div class = "videoBox">';
     echo "<a href='watch.php?id=$id' class = 'videoTitle'> $time </h2>";
-    echo "<video class = 'video' width = '320' height = '240' controls src = '$url'> Your browser does not support the video tag. </video>";
+    echo "<video class = 'video' width = '320' height = '240' src = '$url' autoplay loop> Your browser does not support the video tag. </video>";
     echo "</div>"; 
 }
 
@@ -67,15 +67,16 @@ $_SESSION["ip_id"] = $value->id;
 
 
 </div>
-<div class="videoBox header">
+<div class="videoBox header video_header">
 <a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
 </div>
 
 <div class="btn-group">
-<a class = "bye" href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a class = "upload-btn" href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
 <a href = "videos.php"> <img src= "filledfishcam.png" height="25" width="25">  </a>
 <a href = "notification.php"> <img src= "bell.png" onmouseover = "this.src = 'filledbell.png'" onmouseout = "this.src = 'bell.png'"   height="25" width="25"> </a>
-<a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
+
 </div>
 </body>
 

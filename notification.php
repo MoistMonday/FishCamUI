@@ -19,7 +19,7 @@ mysqli_select_db($link, "video");
 
 <div class = "feed">
 
-
+<img class = "construction" src= "NotiUnderConstruction.png">
 
 <?php
 
@@ -31,10 +31,10 @@ mysqli_select_db($link, "video");
 </div>
 
 <div class="btn-group">
-<a href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a class = "upload-btn" href = "upload.php"> <img src= "fishlogo.png" height="25" width="25">  </a>
+<a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
 <a href = "videos.php"> <img src= "filledfishcam.png" onmouseover = "this.src = 'filledfishcam.png'" onmouseout = "this.src = 'fishcam.png'" height="25" width="25">  </a>
 <a href = "notification.php"> <img src= "filledbell.png" height="25" width="25"> </a>
-<a href = "liked.php"> <img src= "heart.png" onmouseover = "this.src = 'filledheart.png'" onmouseout = "this.src = 'heart.png'" height="25" width="25"> </a>
 </div>
 </div>
 </body>
