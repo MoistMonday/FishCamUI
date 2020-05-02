@@ -18,7 +18,7 @@ if (isset($_POST['submit']))
     $url = "http://localhost/MiniProject/Uploaded/$name";
     $res = mysqli_query($link, "INSERT INTO `uploaded_videos` (`name`, `url`, `time`) VALUES ('$name', '$url', current_timestamp())");
 
-    if($res) printf("Query failed: %s\n", mysqli_error($link));
+    if(!$res) printf("Query failed: %s\n", mysqli_error($link));
 }
 
 ?>
