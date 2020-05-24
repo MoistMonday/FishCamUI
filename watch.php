@@ -6,101 +6,114 @@ mysqli_select_db($link, "video");
 ?>
 <!doctype html>
 <html>
-<head>
-    <link rel = "stylesheet" href = "style.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <meta charset = "utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> FishCam: The Underwater World of Limfjorden </title>
+    <head>
+        <link rel = "stylesheet" href = "style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> FishCam: The Underwater World of Limfjorden </title>
+        <style>
+            .video_container {
+                position: relative;
+            }
 
-</head>
-<body class = "body">
+            .video, .video_overlay {
+                width: 100%; height: auto;
+            }
 
-    <div class = "feed">
-
-        <?php
-            session_start();
-            if(isset($_GET['id']))
-            {
-                $id = $_GET['id'];
-                $sql = "SELECT * FROM `uploaded_videos` WHERE id = '$id'";
-                $result = $link -> query($sql) or die($link->error);
-                while($row = $result->fetch_assoc())
+            .video_overlay {
+                position:absolute; left: 0px;
+                z-index: 1;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class = "body">
+        <div class = "feed">
+            <?php
+                session_start();
+                if(isset($_GET['id']))
                 {
-                    $name = $row['name'];
-                    $url = $row['url'];
-                    $time = $row['time'];
-                    $roiAmount = $row['roiAmount'];
+                    $id = $_GET['id'];
+                    $sql = "SELECT * FROM `uploaded_videos` WHERE id = '$id'";
+                    $result = $link -> query($sql) or die($link->error);
+                    while($row = $result->fetch_assoc())
+                    {
+                        $name = $row['name'];
+                        $url = $row['url'];
+                        $time = $row['time'];
+                        $roiAmount = $row['roiAmount'];
+                    }
+
+                    
+                    $_SESSION["video_id"]=$id;
+
+                    echo "<h2 class = 'videoTitle'>".$time."</h2> </br>";
+                    echo "<div class='video_container'>";
+                    echo "<video  class = 'video' width = '320' height = '240' controls src = '$url' controls autoplay controls loop> Your browser does not support the video tag. </video>";
+                    echo "<canvas class='video_overlay'> </canvas>";
+                    echo "</div>";
                 }
-
+                else{
+                    echo "Error";
+                }
+                //poll buttons
+                $button = '';
+                echo "<div id= 'roi_buttons'>";
+                for($i = 0; $i < $roiAmount; $i++){
+                    $roi_id = $i+1;
+                    $button = '<button class = "vote-btn vote-btn-'.$roi_id.'" onclick = "displayPoll('.$roi_id.')" > <b>Suggest Species</b> </button>';
+                    echo $button;
+                }
+                echo "</div>";
+            ?>
                 
-                $_SESSION["video_id"]=$id;
+                <span id = "comment_message"></span>
+                <br />
+                <div id = "display_comment"></div>
 
-                echo "<h2 class = 'videoTitle'>".$time."</h2> </br>";
-                echo "<video  class = 'video' width = '320' height = '240' controls src = '$url' controls autoplay controls loop> Your browser does not support the video tag. </video>";
-                
-            }
-            else{
-                echo "Error";
-            }
-            //poll buttons
-            $button = '';
-            echo "<div id= 'roi_buttons'>";
-            for($i = 0; $i < $roiAmount; $i++){
-                $roi_id = $i+1;
-                $button = '<button class = "vote-btn vote-btn-'.$roi_id.'" onclick = "displayPoll('.$roi_id.')" > <b>Suggest Species</b> </button>';
-                echo $button;
-            }
-            echo "</div>";
-        ?>
-            
-            <span id = "comment_message"></span>
-            <br />
-            <div id = "display_comment"></div>
+        
+                <div id = "poll"> 
+                    <div id = "poll_headline">
+                    <b>What species do you see in the marked area?</b></br> </br> 
+                    </div>
 
-    
-            <div id = "poll"> 
-                <div id = "poll_headline">
-                <b>What species do you see in the marked area?</b></br> </br> 
+                    <form method = "POST" id= "poll_form" >
+                        <div id = "display_poll" class = "poll_style">
+
+                        </div>     
+                    </form>
                 </div>
 
-                <form method = "POST" id= "poll_form" >
-                    <div id = "display_poll" class = "poll_style">
-
-                    </div>     
-                </form>
-            </div>
-
-     </div>
-
-    </div>
-    <div class="videoBox header">
-            <a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
         </div>
 
-
-    <div class="btn-group" id = "comment-btn-group">
-        <form method = "POST" id= "comment_form">
-               
-            <div class = "comment">
-                <input name = "body" id = "body" class = "form-class comment-bar"
-                placeholder = "Add a Comment..."/>
-                <input type = "hidden" name = "comment_id" id = "comment_id" value = "0"/>
-                <input class = "button" type = "submit" name = "submit" id = "submit" 
-                class = "post" value = "POST" />
-            </div>     
-        </form>
-    </div>
-
-    <div class="btn-group" id = "poll-btn-group">
-    
-    </div>
+        </div>
+        <div class="videoBox header">
+                <a href = "videos.php"> <img src= "applogo.png" height="30" width="97">  </a>
+            </div>
 
 
-</body>
+        <div class="btn-group" id = "comment-btn-group">
+            <form method = "POST" id= "comment_form">
+                
+                <div class = "comment">
+                    <input name = "body" id = "body" class = "form-class comment-bar"
+                    placeholder = "Add a Comment..."/>
+                    <input type = "hidden" name = "comment_id" id = "comment_id" value = "0"/>
+                    <input class = "button" type = "submit" name = "submit" id = "submit" 
+                    class = "post" value = "POST" />
+                </div>     
+            </form>
+        </div>
 
+        <div class="btn-group" id = "poll-btn-group">
+        
+        </div>
+
+        <script src="roi_logic.js"></script>
+    </body>
 </html>
 <script>
     $(document).ready(function(){
@@ -173,6 +186,7 @@ mysqli_select_db($link, "video");
         });
 
     });
+
     function load_poll(){
 
             console.log("Loading polls");
