@@ -22,11 +22,13 @@ video.addEventListener('loadeddata', event => {
 })
 
 function start(){
-    if(!unique_colors){
+    console.log("start");
+    if(!unique_colors && rois){
+        console.log("gen");
         unique_colors = {}
         unique_colors = gen_unique_colors();
+        draw_rois();
     }
-    draw_rois();
 }
 
 function gen_unique_colors(){
