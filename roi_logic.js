@@ -53,7 +53,7 @@ function draw_rois(){
             let [x, y, w, h] = entry[1]
     
             ctx.lineWidth = 5;
-            ctx.strokeStyle = unique_colors[entry[0]] || '#FFFFFF';
+            ctx.strokeStyle = unique_colors[entry[0]] || '#FFFFFF00';
             ctx.strokeRect(x, y, w, h);
             ctx.closePath();
         }
