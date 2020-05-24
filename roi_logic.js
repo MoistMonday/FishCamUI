@@ -5,8 +5,8 @@ const ctx = canvas.getContext("2d");
 const src = video.src.replace(".mp4", ".json");
 
 let rois;
-let colors = ["#6a61ab", "#b0cc52", "#d58c3e", "#d34071"]
-let unique_colors = {}
+let colors = ["#6a61ab", "#b0cc52", "#d58c3e", "#d34071"];
+let unique_colors;
 
 fetch(src, {method: 'GET', credentials: 'same-origin'})
     .then( res => res.json() )
@@ -22,7 +22,10 @@ video.addEventListener('loadeddata', event => {
 })
 
 function start(){
-    unique_colors = gen_unique_colors();
+    if(!unique_colors){
+        unique_colors = {}
+        unique_colors = gen_unique_colors();
+    }
     draw_rois();
 }
 
